@@ -5,7 +5,7 @@ export function Footer() {
         <p>
           <span className="font-semibold text-text-primary">Hitakshi Sharma</span>
           <span className="mx-2 text-accent">·</span>
-          Brand &amp; Growth Strategist
+          Passion. Purpose. Precision.
           <span className="mx-2 text-accent">·</span>
           2026
         </p>
