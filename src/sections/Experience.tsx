@@ -28,7 +28,7 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
       >
         <div style={{ perspective: '900px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
         <motion.div
-          className="group bg-surface border border-border rounded-2xl p-6 sm:p-8 hover:border-accent/30 transition-colors duration-300"
+          className="group bg-surface/75 backdrop-blur-sm border border-white/40 dark:border-white/10 rounded-2xl p-6 sm:p-8 hover:border-accent/40 transition-colors duration-300 shadow-lg shadow-black/[0.04]"
           animate={{
             rotateX: tilt.x,
             rotateY: tilt.y,

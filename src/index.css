@@ -88,3 +88,15 @@
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(200%); }
 }
+
+/* Film grain flicker — shifts SVG noise pattern position for texture animation */
+@keyframes grain-flicker {
+  0%        { transform: translate(0,    0);    }
+  14%       { transform: translate(-3%,  -4%);  }
+  28%       { transform: translate(4%,   2%);   }
+  42%       { transform: translate(-2%,  5%);   }
+  57%       { transform: translate(5%,   -3%);  }
+  71%       { transform: translate(-4%,  1%);   }
+  85%       { transform: translate(2%,   -5%);  }
+  100%      { transform: translate(-1%,  3%);   }
+}

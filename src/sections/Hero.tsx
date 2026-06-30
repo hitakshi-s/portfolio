@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Mail, Download } from 'lucide-react'
 
 function LinkedinIcon({ size = 16 }: { size?: number }) {
@@ -55,30 +55,58 @@ function MagneticCTA({ href, children, className, download, target, rel }: {
 }
 
 const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+  initial: { opacity: 0, y: 20, filter: 'blur(10px)' },
+  animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  transition: { duration: 0.75, delay, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
 })
 
 export function Hero() {
+  const { scrollY } = useScroll()
+  const blob1Y = useTransform(scrollY, [0, 700], [0, -110])
+  const blob2Y = useTransform(scrollY, [0, 700], [0, -70])
+  const blob3Y = useTransform(scrollY, [0, 700], [0, -50])
+
   return (
     <section
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden bg-background px-6 md:px-12 lg:px-24 xl:px-32"
     >
-      {/* Aurora background gradients */}
+      {/* Silk mesh gradient — multiple layered blobs that drift independently */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Primary aurora — breathes + parallax */}
         <motion.div
-          className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full"
-          style={{ background: 'radial-gradient(circle, var(--aurora-1) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.08, 1], rotate: [0, 8, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-32 -right-32 w-[580px] h-[580px] rounded-full"
+          style={{ background: 'radial-gradient(circle, var(--aurora-1) 0%, transparent 65%)', y: blob1Y }}
+          animate={{ scale: [1, 1.1, 0.97, 1], opacity: [0.6, 1, 0.7, 0.6], rotate: [0, 10, -3, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
+        {/* Secondary aurora — breathes + parallax */}
         <motion.div
-          className="absolute -bottom-16 -left-24 w-[380px] h-[380px] rounded-full"
-          style={{ background: 'radial-gradient(circle, var(--aurora-2) 0%, transparent 70%)' }}
-          animate={{ scale: [1.05, 1, 1.05], rotate: [0, -6, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -bottom-16 -left-24 w-[420px] h-[420px] rounded-full"
+          style={{ background: 'radial-gradient(circle, var(--aurora-2) 0%, transparent 65%)', y: blob2Y }}
+          animate={{ scale: [1.05, 0.95, 1.08, 1.05], opacity: [0.5, 0.85, 0.6, 0.5], rotate: [0, -8, 4, 0] }}
+          transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        />
+        {/* Silk layer 1 — drifts center-left */}
+        <motion.div
+          className="absolute top-1/3 -left-16 w-[320px] h-[320px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(194,24,91,0.07) 0%, transparent 70%)', y: blob3Y }}
+          animate={{ x: [0, 30, -10, 0], y: [0, -20, 15, 0], scale: [1, 1.12, 0.96, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        />
+        {/* Silk layer 2 — drifts top-center */}
+        <motion.div
+          className="absolute -top-10 left-1/3 w-[260px] h-[260px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(252,228,236,0.55) 0%, transparent 70%)' }}
+          animate={{ x: [0, -25, 12, 0], y: [0, 18, -12, 0], scale: [0.95, 1.1, 0.98, 0.95], opacity: [0.4, 0.75, 0.5, 0.4] }}
+          transition={{ duration: 19, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
+        />
+        {/* Silk layer 3 — bottom-right accent */}
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-[200px] h-[200px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(194,24,91,0.05) 0%, transparent 70%)' }}
+          animate={{ x: [0, 20, -15, 0], y: [0, -15, 20, 0], scale: [1, 0.9, 1.05, 1] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
         />
         {/* Floating rose particles */}
         {heroParticles.map((p, i) => (

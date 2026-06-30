@@ -25,7 +25,7 @@ function SkillCard({ category, skills, delay }: SkillCategory & { delay: number 
     <ScrollReveal delay={delay}>
       <div style={{ perspective: '800px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
       <motion.div
-        className="relative h-full bg-surface border border-border rounded-2xl p-6 group overflow-hidden transition-colors duration-300 hover:border-accent/40 hover:bg-accent-light/10"
+        className="relative h-full bg-surface/75 backdrop-blur-sm border border-white/40 dark:border-white/10 rounded-2xl p-6 group overflow-hidden transition-colors duration-300 hover:border-accent/40 shadow-lg shadow-black/[0.04]"
         animate={{
           rotateX: tilt.x,
           rotateY: tilt.y,

@@ -8,13 +8,13 @@ interface Props {
   y?: number
 }
 
-export function ScrollReveal({ children, delay = 0, className, y = 24 }: Props) {
+export function ScrollReveal({ children, delay = 0, className, y = 20 }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y, filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.75, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={className}
     >
       {children}
