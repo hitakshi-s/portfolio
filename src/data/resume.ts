@@ -39,7 +39,7 @@ export const resume = {
   headline: 'D2C Brand Strategist · 6+ Years',
   taglines: ['Brand Builder', 'Campaign Architect', 'Team Leader', 'D2C Strategist'] as string[],
   summary:
-    'D2C marketing professional with 6+ years of experience in brand management, organic marketing, social media strategy, content marketing, influencer collaborations, and marketplace management. Passionate about building brands through strategic storytelling, community-first content, and scalable organic growth. Successfully achieved over 300% organic growth for a D2C brand by developing data-driven social media strategies, high-impact campaigns, and audience engagement initiatives.',
+    'D2C Growth Specialist | Digital Marketing | Brand Management | Social Media Strategy | Full-Stack Organic | 300% Organic Growth | Consumer Behavior | Product Launch Strategy',
 
   about: {
     pullQuote: "I don't just manage social media — I build the brand behind it.",
