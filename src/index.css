@@ -89,14 +89,3 @@
   100% { transform: translateX(200%); }
 }
 
-/* Film grain flicker — shifts background-position so the div itself never moves */
-@keyframes grain-flicker {
-  0%   { background-position:   0%   0%; }
-  14%  { background-position:  20%  15%; }
-  28%  { background-position:  55%  10%; }
-  42%  { background-position:  80%  55%; }
-  57%  { background-position:  25%  80%; }
-  71%  { background-position:  65%  35%; }
-  85%  { background-position:  10%  65%; }
-  100% { background-position:   0%   0%; }
-}
