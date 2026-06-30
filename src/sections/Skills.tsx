@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { SectionHeader } from '../components/SectionHeader'
@@ -14,13 +15,37 @@ const categoryIcons: Record<string, string> = {
 }
 
 function SkillCard({ category, skills, delay }: SkillCategory & { delay: number }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0, hover: false })
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setTilt({ x: ((e.clientY - r.top) / r.height - 0.5) * 10, y: -((e.clientX - r.left) / r.width - 0.5) * 10, hover: true })
+  }
+
   return (
     <ScrollReveal delay={delay}>
+      <div style={{ perspective: '800px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
       <motion.div
-        className="h-full bg-surface border border-border rounded-2xl p-6 group hover:border-accent/30 hover:bg-accent-light/20 transition-all duration-300"
-        whileHover={{ y: -3 }}
-        transition={{ duration: 0.2 }}
+        className="relative h-full bg-surface border border-border rounded-2xl p-6 group overflow-hidden transition-colors duration-300 hover:border-accent/40 hover:bg-accent-light/10"
+        animate={{
+          rotateX: tilt.x,
+          rotateY: tilt.y,
+          y: tilt.hover ? -5 : 0,
+          boxShadow: tilt.hover ? '0 12px 32px rgba(194,24,91,0.13)' : '0 1px 3px rgba(0,0,0,0.05)',
+        }}
+        transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+        style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
       >
+        {/* Shimmer overlay on hover */}
+        {tilt.hover && (
+          <div
+            className="absolute inset-0 pointer-events-none rounded-2xl"
+            style={{
+              background: 'linear-gradient(105deg, transparent 40%, rgba(194,24,91,0.06) 50%, transparent 60%)',
+              animation: 'shimmer-sweep 0.8s ease forwards',
+            }}
+          />
+        )}
+
         <div className="flex items-center gap-3 mb-4">
           <span className="text-2xl" aria-hidden="true">
             {categoryIcons[category] ?? '✦'}
@@ -41,6 +66,7 @@ function SkillCard({ category, skills, delay }: SkillCategory & { delay: number 
           ))}
         </div>
       </motion.div>
+      </div>
     </ScrollReveal>
   )
 }

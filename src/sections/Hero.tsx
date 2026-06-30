@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Download } from 'lucide-react'
 
@@ -20,6 +21,38 @@ const floatingBadges = [
   { text: 'AI Content', top: '68%', right: '2%', delay: 1.2 },
   { text: 'D2C Strategy', top: '82%', right: '14%', delay: 0.6 },
 ]
+
+const heroParticles = [
+  { left: '12%', top: '22%', delay: 0,   size: 6 },
+  { left: '38%', top: '62%', delay: 1.2, size: 4 },
+  { left: '55%', top: '18%', delay: 0.5, size: 5 },
+  { left: '75%', top: '72%', delay: 1.8, size: 4 },
+  { left: '28%', top: '78%', delay: 1.5, size: 5 },
+  { left: '88%', top: '38%', delay: 0.3, size: 4 },
+]
+
+function MagneticCTA({ href, children, className, download, target, rel }: {
+  href: string; children: React.ReactNode; className: string;
+  download?: boolean; target?: string; rel?: string;
+}) {
+  const [off, setOff] = useState({ x: 0, y: 0 })
+  const handle = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setOff({ x: ((e.clientX - r.left) / r.width - 0.5) * 10, y: ((e.clientY - r.top) / r.height - 0.5) * 10 })
+  }
+  return (
+    <motion.a
+      href={href} download={download} target={target} rel={rel}
+      animate={{ x: off.x, y: off.y }}
+      transition={{ type: 'spring', stiffness: 380, damping: 26 }}
+      onMouseMove={handle}
+      onMouseLeave={() => setOff({ x: 0, y: 0 })}
+      className={className}
+    >
+      {children}
+    </motion.a>
+  )
+}
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 24 },
@@ -47,6 +80,18 @@ export function Hero() {
           animate={{ scale: [1.05, 1, 1.05], rotate: [0, -6, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
         />
+        {/* Floating rose particles */}
+        {heroParticles.map((p, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-accent/25"
+            style={{
+              left: p.left, top: p.top,
+              width: p.size, height: p.size,
+              animation: `float-drift ${4 + p.delay}s ease-in-out ${p.delay}s infinite`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center py-24 lg:py-0">
@@ -60,9 +105,9 @@ export function Hero() {
 
           <motion.h1
             {...fadeUp(0.35)}
-            className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold text-text-primary leading-tight"
+            className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight"
           >
-            {resume.name.split(' ')[0]}
+            <span className="gradient-name">{resume.name.split(' ')[0]}</span>
             <br />
             <span className="text-text-muted font-light">{resume.name.split(' ')[1]}</span>
           </motion.h1>
@@ -76,23 +121,23 @@ export function Hero() {
           </motion.p>
 
           <motion.div {...fadeUp(0.75)} className="mt-10 flex flex-wrap gap-3">
-            <a
+            <MagneticCTA
               href="/myportfolio/resume.pdf"
               download
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-accent/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-accent/90 transition-colors duration-200 shadow-md hover:shadow-lg"
             >
               <Download size={16} />
               Download Resume
-            </a>
-            <a
+            </MagneticCTA>
+            <MagneticCTA
               href={resume.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-border bg-surface text-text-primary font-semibold rounded-full hover:border-accent hover:text-accent hover:bg-accent-light transition-all duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border bg-surface text-text-primary font-semibold rounded-full hover:border-accent hover:text-accent hover:bg-accent-light transition-colors duration-200"
             >
               <LinkedinIcon size={16} />
               LinkedIn
-            </a>
+            </MagneticCTA>
             <a
               href={`mailto:${resume.email}`}
               className="inline-flex items-center justify-center w-12 h-12 border border-border bg-surface rounded-full hover:border-accent hover:text-accent hover:bg-accent-light text-text-muted transition-all duration-200"

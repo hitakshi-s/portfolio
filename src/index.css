@@ -54,3 +54,37 @@
     @apply px-6 md:px-12 lg:px-24 xl:px-32;
   }
 }
+
+/* Animated gradient sweep for hero name */
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.gradient-name {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--color-text-primary)) 0%,
+    #C2185B 40%,
+    rgb(var(--color-text-primary)) 80%,
+    #C2185B 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s linear infinite;
+}
+
+/* Floating particle drift */
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+  33%       { transform: translateY(-14px) translateX(6px);  opacity: 0.6; }
+  66%       { transform: translateY(-8px)  translateX(-4px); opacity: 0.4; }
+}
+
+/* Shimmer sweep for skill cards */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}

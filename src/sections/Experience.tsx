@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import { ScrollReveal } from '../components/ScrollReveal'
@@ -7,6 +8,16 @@ import { resume, type Experience as ExperienceType } from '../data/resume'
 
 function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) {
   const isLeft = index % 2 === 0
+  const [tilt, setTilt] = useState({ x: 0, y: 0, hover: false })
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setTilt({
+      x: ((e.clientY - r.top) / r.height - 0.5) * 8,
+      y: -((e.clientX - r.left) / r.width - 0.5) * 8,
+      hover: true,
+    })
+  }
 
   return (
     <div className={`relative flex gap-0 ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex-col lg:items-start`}>
@@ -15,10 +26,17 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
         delay={index * 0.1}
         className="flex-1 max-w-full lg:max-w-[calc(50%-2rem)]"
       >
+        <div style={{ perspective: '900px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
         <motion.div
-          className="group bg-surface border border-border rounded-2xl p-6 sm:p-8 hover:border-accent/30 hover:shadow-md transition-all duration-300"
-          whileHover={{ y: -2 }}
-          transition={{ duration: 0.2 }}
+          className="group bg-surface border border-border rounded-2xl p-6 sm:p-8 hover:border-accent/30 transition-colors duration-300"
+          animate={{
+            rotateX: tilt.x,
+            rotateY: tilt.y,
+            y: tilt.hover ? -5 : 0,
+            boxShadow: tilt.hover ? '0 14px 36px rgba(194,24,91,0.12)' : '0 1px 4px rgba(0,0,0,0.06)',
+          }}
+          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+          style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-text-muted">
             {exp.period}
@@ -49,6 +67,7 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
             ))}
           </div>
         </motion.div>
+        </div>
       </ScrollReveal>
 
       {/* Center timeline dot — desktop only */}

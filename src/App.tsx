@@ -3,6 +3,7 @@ import { LoadingScreen } from './components/LoadingScreen'
 import { FloatingNav } from './components/FloatingNav'
 import { ScrollProgress } from './components/ScrollProgress'
 import { ThemeToggle } from './components/ThemeToggle'
+import { MouseGlow } from './components/MouseGlow'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { Experience } from './sections/Experience'
@@ -19,6 +20,7 @@ export default function App() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div className={`min-h-screen bg-background font-manrope transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+        <MouseGlow />
         <ScrollProgress />
         <FloatingNav />
         <ThemeToggle />
