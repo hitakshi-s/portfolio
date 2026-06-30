@@ -39,14 +39,14 @@ export const resume = {
   headline: 'D2C Brand Strategist · 6+ Years',
   taglines: ['Brand Builder', 'Campaign Architect', 'Team Leader', 'D2C Strategist'] as string[],
   summary:
-    'D2C professional with 6+ years of experience leading digital growth across social media and content. Skilled in building strong organic brand presence through high-impact campaigns, audience engagement, and scalable strategies aligned with core business goals.',
+    'D2C marketing professional with 6+ years of experience in brand management, organic marketing, social media strategy, content marketing, influencer collaborations, and marketplace management. Passionate about building brands through strategic storytelling, community-first content, and scalable organic growth. Successfully achieved over 300% organic growth for a D2C brand by developing data-driven social media strategies, high-impact campaigns, and audience engagement initiatives.',
 
   about: {
     pullQuote: "I don't just manage social media — I build the brand behind it.",
     paragraphs: [
-      "My journey in brand building started on the shop floor — as a Customer Sales Executive, I discovered that great sales isn't about pushing products, it's about telling the right story to the right person. That insight has guided every role since.",
-      'At Spectalook, I took that belief to its natural limit: co-developing a D2C brand from the ground up alongside the Co-founder. Four years of end-to-end ownership — from social strategy and Shopify operations to marketplace management on Amazon and Flipkart — taught me that a great brand is a living system, not a campaign.',
-      'Today, as a Brand Manager and Social Media Strategist, I partner with D2C and FMCG brands to build that same living presence: organic strategies that scale, influencer programs that convert, and teams that execute with purpose.',
+      'D2C marketing professional with 6+ years of experience in brand management, organic marketing, social media strategy, content marketing, influencer collaborations, and marketplace management. Passionate about building brands through strategic storytelling, community-first content, and scalable organic growth. Successfully achieved over 300% organic growth for a D2C brand by developing data-driven social media strategies, high-impact campaigns, and audience engagement initiatives.',
+      'Proficient in leveraging AI-powered tools such as ChatGPT, Claude, Gemini, Perplexity, Figma AI, Canva AI, Meta AI, InVideo, VEED, Pictory AI, Lovable, ManyChat, and other automation platforms to streamline content creation, campaign planning, research, workflow automation, and marketing operations.',
+      'Experienced in managing brands across Shopify, Amazon, Flipkart, and multiple social media platforms while aligning marketing initiatives with business objectives.',
     ],
     stats: [
       { value: '6+', label: 'Years Experience' },
@@ -151,7 +151,7 @@ export const resume = {
 
   education: [
     { degree: 'Masters in Commerce', institution: 'Neeldeep Comm. College', location: 'Ahmedabad, Gujarat', year: '2021' },
-    { degree: 'Digital Marketing Certification', institution: 'Career Ninja, LearnTube', location: 'Online', year: '2021' },
     { degree: 'Bachelors in Commerce', institution: 'New LJ Comm. College', location: 'Ahmedabad, Gujarat', year: '2019' },
+    { degree: 'Digital Marketing Certification', institution: 'Career Ninja, LearnTube', location: 'Online', year: '2021' },
   ] as Education[],
 }

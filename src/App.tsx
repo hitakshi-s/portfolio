@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { LoadingScreen } from './components/LoadingScreen'
 import { FloatingNav } from './components/FloatingNav'
 import { ScrollProgress } from './components/ScrollProgress'
+import { ThemeToggle } from './components/ThemeToggle'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { Experience } from './sections/Experience'
@@ -20,6 +21,7 @@ export default function App() {
       <div className={`min-h-screen bg-background font-manrope transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <ScrollProgress />
         <FloatingNav />
+        <ThemeToggle />
         <main>
           <Hero />
           <About />

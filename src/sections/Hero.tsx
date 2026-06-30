@@ -37,13 +37,13 @@ export function Hero() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
           className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full"
-          style={{ background: 'radial-gradient(circle, #FCE4EC 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, var(--aurora-1) 0%, transparent 70%)' }}
           animate={{ scale: [1, 1.08, 1], rotate: [0, 8, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute -bottom-16 -left-24 w-[380px] h-[380px] rounded-full"
-          style={{ background: 'radial-gradient(circle, #FFF8E1 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, var(--aurora-2) 0%, transparent 70%)' }}
           animate={{ scale: [1.05, 1, 1.05], rotate: [0, -6, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -131,7 +131,7 @@ export function Hero() {
           {floatingBadges.map((badge) => (
             <motion.div
               key={badge.text}
-              className="absolute px-3 py-1.5 text-xs font-medium bg-white/90 backdrop-blur-sm border border-border rounded-full text-text-muted shadow-sm whitespace-nowrap"
+              className="absolute px-3 py-1.5 text-xs font-medium bg-surface/90 backdrop-blur-sm border border-border rounded-full text-text-muted shadow-sm whitespace-nowrap"
               style={{ top: badge.top, right: badge.right }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: [0, -6, 0] }}

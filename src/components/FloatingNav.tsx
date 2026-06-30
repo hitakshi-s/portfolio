@@ -38,7 +38,7 @@ export function FloatingNav() {
           className="fixed top-5 left-1/2 -translate-x-1/2 z-50"
         >
           {/* Desktop pill nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/85 backdrop-blur-md border border-border rounded-full px-2 py-1.5 shadow-md">
+          <nav className="hidden md:flex items-center gap-1 bg-surface/85 backdrop-blur-md border border-border rounded-full px-2 py-1.5 shadow-md">
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -54,7 +54,7 @@ export function FloatingNav() {
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex items-center justify-center w-10 h-10 bg-white/85 backdrop-blur-md border border-border rounded-full shadow-md text-text-primary"
+              className="flex items-center justify-center w-10 h-10 bg-surface/85 backdrop-blur-md border border-border rounded-full shadow-md text-text-primary"
               aria-label="Toggle menu"
             >
               {menuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -71,7 +71,7 @@ export function FloatingNav() {
                 transition={{ duration: 0.2 }}
                 className={cn(
                   'absolute top-14 left-1/2 -translate-x-1/2 md:hidden',
-                  'bg-white/95 backdrop-blur-md border border-border rounded-2xl shadow-lg p-3 w-52'
+                  'bg-surface/95 backdrop-blur-md border border-border rounded-2xl shadow-lg p-3 w-52'
                 )}
               >
                 {navItems.map((item) => (
