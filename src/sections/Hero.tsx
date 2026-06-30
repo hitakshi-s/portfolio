@@ -150,7 +150,7 @@ export function Hero() {
 
           <motion.div {...fadeUp(0.75)} className="mt-10 flex flex-wrap gap-3">
             <MagneticCTA
-              href="/myportfolio/resume.pdf"
+              href="/portfolio/resume.pdf"
               download
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-accent/90 transition-colors duration-200 shadow-md hover:shadow-lg"
             >
