@@ -77,7 +77,7 @@ export function Hero() {
 
           <motion.div {...fadeUp(0.75)} className="mt-10 flex flex-wrap gap-3">
             <a
-              href="/dimpsportfolio/resume.pdf"
+              href="/myportfolio/resume.pdf"
               download
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-accent/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
@@ -103,8 +103,8 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Right: Abstract decorative shape + floating badges */}
-        <div className="relative flex items-center justify-center h-64 lg:h-[480px]">
+        {/* Right: Abstract decorative shape + floating badges — hidden on mobile */}
+        <div className="relative hidden lg:flex items-center justify-center lg:h-[480px]">
           <motion.div
             className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
             animate={{ rotate: [0, 360] }}
@@ -131,7 +131,7 @@ export function Hero() {
           {floatingBadges.map((badge) => (
             <motion.div
               key={badge.text}
-              className="absolute px-3 py-1.5 text-xs font-medium bg-white/90 backdrop-blur-sm border border-border rounded-full text-text-muted shadow-sm whitespace-nowrap hidden lg:block"
+              className="absolute px-3 py-1.5 text-xs font-medium bg-white/90 backdrop-blur-sm border border-border rounded-full text-text-muted shadow-sm whitespace-nowrap"
               style={{ top: badge.top, right: badge.right }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: [0, -6, 0] }}
