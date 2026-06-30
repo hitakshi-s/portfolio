@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react'
 export function useTheme() {
   const [dark, setDark] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false
-    const stored = localStorage.getItem('theme')
-    if (stored) return stored === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    return localStorage.getItem('theme') === 'dark'
   })
 
   useEffect(() => {
