@@ -3,6 +3,7 @@ import { LoadingScreen } from './components/LoadingScreen'
 import { FloatingNav } from './components/FloatingNav'
 import { ScrollProgress } from './components/ScrollProgress'
 import { ThemeToggle } from './components/ThemeToggle'
+import { MusicToggle } from './components/MusicToggle'
 import { MouseGlow } from './components/MouseGlow'
 import { GrainTexture } from './components/GrainTexture'
 import { Hero } from './sections/Hero'
@@ -25,6 +26,7 @@ export default function App() {
         <GrainTexture />
         <ScrollProgress />
         <FloatingNav />
+        <MusicToggle />
         <ThemeToggle />
         <main>
           <Hero />

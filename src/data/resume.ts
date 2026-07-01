@@ -22,6 +22,7 @@ export interface Certification {
   name: string
   issuer: string
   featured?: boolean
+  link?: string
 }
 
 export interface Education {
@@ -137,20 +138,65 @@ export const resume = {
   ] as SkillCategory[],
 
   certifications: [
-    { name: 'Leadership Skills', issuer: 'IIM Ahmedabad', featured: true },
+    {
+      name: 'Leadership Skills',
+      issuer: 'IIM Ahmedabad',
+      featured: true,
+      link: 'https://www.coursera.org/account/accomplishments/verify/CUGODDA6N5SW?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
+    },
     { name: 'Business Communication, Interpersonal Skills & Time Management', issuer: 'Skillephant' },
     { name: 'Amazon Account Management Services', issuer: 'Amazon' },
-    { name: 'Stock Market Introduction', issuer: 'LearnTube' },
-    { name: 'Introduction To AI Social Media Mastery', issuer: 'LearnTube' },
-    { name: 'Techniques to Write Social Media Content Using ChatGPT', issuer: 'LearnTube' },
-    { name: 'Simplifying Social Media Management with AI', issuer: 'LearnTube' },
-    { name: 'Creating Social Media Visuals with AI', issuer: 'LearnTube' },
-    { name: 'Strategically Build and Engage Your Network on LinkedIn', issuer: 'Coursera' },
-    { name: 'Introduction to Project Management with ClickUp', issuer: 'ClickUp' },
-    { name: 'Instagram Planning: Manage Content Like a Pro', issuer: 'Coursera' },
-    { name: 'Build Your Business Brand Using Canva', issuer: 'Coursera' },
+    {
+      name: 'Stock Market Introduction',
+      issuer: 'LearnTube',
+      link: 'https://learntube.ai/verify/certificate/b8d9de40-c56b-40b3-ab69-6ddc4e496124',
+    },
+    {
+      name: 'Introduction To AI Social Media Mastery',
+      issuer: 'LearnTube',
+      link: 'https://learntube.ai/verify/certificate/a71e8a86-d164-4cb1-b510-43b38eb632d8',
+    },
+    {
+      name: 'Techniques to Write Social Media Content Using ChatGPT',
+      issuer: 'LearnTube',
+      link: 'https://learntube.ai/verify/certificate/202cf386-0ee9-4935-97f9-ea4a4b4974eb',
+    },
+    {
+      name: 'Simplifying Social Media Management with AI',
+      issuer: 'LearnTube',
+      link: 'https://learntube.ai/verify/certificate/769754cd-6220-4962-8de6-bdea6842246b',
+    },
+    {
+      name: 'Creating Social Media Visuals with AI',
+      issuer: 'LearnTube',
+      link: 'https://learntube.ai/verify/certificate/3a63ba62-5394-404c-bf3a-00631c8dc93b',
+    },
+    {
+      name: 'Strategically Build and Engage Your Network on LinkedIn',
+      issuer: 'Coursera',
+      link: 'https://www.coursera.org/account/accomplishments/verify/HXS7IQAB4IJV',
+    },
+    {
+      name: 'Introduction to Project Management with ClickUp',
+      issuer: 'ClickUp',
+      link: 'https://www.coursera.org/account/accomplishments/verify/TUU3PDQ6560M',
+    },
+    {
+      name: 'Instagram Planning: Manage Content Like a Pro',
+      issuer: 'Coursera',
+      link: 'https://www.coursera.org/account/accomplishments/verify/QA6SWSZ10L5J',
+    },
+    {
+      name: 'Build Your Business Brand Using Canva',
+      issuer: 'Coursera',
+      link: 'https://www.coursera.org/account/accomplishments/verify/B1AGZOJLLPQO',
+    },
     { name: 'Brand Analysis and Process Management', issuer: 'Coursera' },
-    { name: '5 Ways to Build a Better LinkedIn Profile', issuer: 'Coursera' },
+    {
+      name: '5 Ways to Build a Better LinkedIn Profile',
+      issuer: 'Coursera',
+      link: 'https://www.coursera.org/account/accomplishments/verify/ZN069RE6E7NW',
+    },
   ] as Certification[],
 
   education: [

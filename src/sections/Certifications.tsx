@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Award } from 'lucide-react'
+import { Award, ExternalLink } from 'lucide-react'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { SectionHeader } from '../components/SectionHeader'
 import { resume, type Certification } from '../data/resume'
@@ -28,52 +28,84 @@ function CertCard({ cert, delay }: { cert: Certification; delay: number }) {
     })
   }
 
-  return (
-    <ScrollReveal delay={delay}>
-      <div style={{ perspective: '900px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
-        <motion.div
+  const cardClassName = cn(
+    'relative block h-[176px] border rounded-2xl p-5 transition-colors duration-300',
+    cert.featured ? 'bg-accent-light border-accent/30' : 'bg-surface border-border',
+    cert.link && 'cursor-pointer hover:border-accent/40'
+  )
+  const cardAnimate = {
+    rotateX: tilt.x,
+    rotateY: tilt.y,
+    y: tilt.hover ? -5 : 0,
+    boxShadow: tilt.hover ? '0 14px 36px rgba(162,28,175,0.13)' : '0 1px 4px rgba(0,0,0,0.05)',
+  }
+  const cardTransition = { type: 'spring' as const, stiffness: 260, damping: 20 }
+
+  const content = (
+    <>
+      {cert.link && (
+        <ExternalLink
+          size={13}
+          className="absolute top-4 right-4 text-accent transition-opacity duration-200"
+          style={{ opacity: tilt.hover ? 1 : 0 }}
+        />
+      )}
+      <div className="flex items-start gap-3">
+        <div
           className={cn(
-            'h-[176px] border rounded-2xl p-5 transition-colors duration-300',
-            cert.featured ? 'bg-accent-light border-accent/30' : 'bg-surface border-border'
+            'flex-shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center',
+            colorClass
           )}
-          animate={{
-            rotateX: tilt.x,
-            rotateY: tilt.y,
-            y: tilt.hover ? -5 : 0,
-            boxShadow: tilt.hover ? '0 14px 36px rgba(162,28,175,0.13)' : '0 1px 4px rgba(0,0,0,0.05)',
-          }}
-          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
         >
-          <div className="flex items-start gap-3">
-            <div
+          <Award size={14} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span
               className={cn(
-                'flex-shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center',
+                'inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border',
                 colorClass
               )}
             >
-              <Award size={14} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span
-                  className={cn(
-                    'inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border',
-                    colorClass
-                  )}
-                >
-                  {cert.issuer}
-                </span>
-                {cert.featured && (
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent text-white">
-                    Featured
-                  </span>
-                )}
-              </div>
-              <p className="text-sm font-semibold text-text-primary leading-snug line-clamp-4">{cert.name}</p>
-            </div>
+              {cert.issuer}
+            </span>
+            {cert.featured && (
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent text-white">
+                Featured
+              </span>
+            )}
           </div>
-        </motion.div>
+          <p className="text-sm font-semibold text-text-primary leading-snug line-clamp-4 pr-4">{cert.name}</p>
+        </div>
+      </div>
+    </>
+  )
+
+  return (
+    <ScrollReveal delay={delay}>
+      <div style={{ perspective: '900px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
+        {cert.link ? (
+          <motion.a
+            href={cert.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cardClassName}
+            animate={cardAnimate}
+            transition={cardTransition}
+            style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+          >
+            {content}
+          </motion.a>
+        ) : (
+          <motion.div
+            className={cardClassName}
+            animate={cardAnimate}
+            transition={cardTransition}
+            style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+          >
+            {content}
+          </motion.div>
+        )}
       </div>
     </ScrollReveal>
   )
