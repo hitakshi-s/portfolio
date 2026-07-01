@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '../utils/cn'
 
@@ -13,6 +13,16 @@ const navItems = [
 
 export function FloatingNav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [hovered, setHovered] = useState<string | null>(null)
+  const { scrollY } = useScroll()
+  const navShadow = useTransform(
+    scrollY,
+    [0, 300],
+    [
+      '0 6px 20px rgba(162,28,175,0.10), 0 1px 3px rgba(0,0,0,0.05)',
+      '0 14px 42px rgba(162,28,175,0.30), 0 2px 8px rgba(0,0,0,0.12)',
+    ]
+  )
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false)
@@ -23,17 +33,29 @@ export function FloatingNav() {
   return (
     <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50">
       {/* Desktop pill nav */}
-      <nav className="hidden md:flex items-center gap-1 bg-surface/85 backdrop-blur-md border border-border rounded-full px-2 py-1.5 shadow-md">
+      <motion.nav
+        style={{ boxShadow: navShadow }}
+        onMouseLeave={() => setHovered(null)}
+        className="hidden md:flex items-center gap-1 bg-surface/85 backdrop-blur-md border border-border rounded-full px-2 py-1.5"
+      >
         {navItems.map((item) => (
           <button
             key={item.label}
             onClick={() => handleNavClick(item.href)}
-            className="px-4 py-1.5 text-sm font-medium text-text-muted hover:text-accent hover:bg-accent-light rounded-full transition-all duration-200 cursor-pointer"
+            onMouseEnter={() => setHovered(item.label)}
+            className="relative px-4 py-1.5 text-sm font-medium text-text-muted hover:text-accent rounded-full transition-colors duration-200 cursor-pointer"
           >
-            {item.label}
+            {hovered === item.label && (
+              <motion.span
+                layoutId="nav-hover-pill"
+                className="absolute inset-0 bg-accent-light rounded-full"
+                transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+              />
+            )}
+            <span className="relative z-10">{item.label}</span>
           </button>
         ))}
-      </nav>
+      </motion.nav>
 
       {/* Mobile hamburger button */}
       <div className="md:hidden">

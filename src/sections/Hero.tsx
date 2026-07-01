@@ -198,9 +198,26 @@ export function Hero() {
             className="absolute w-40 h-40 rounded-full"
             style={{ background: 'radial-gradient(circle, rgba(162,28,175,0.18) 0%, transparent 70%)' }}
           />
-          {/* Static monogram core */}
-          <div className="relative w-28 h-28 rounded-full bg-surface border border-accent/30 shadow-lg flex items-center justify-center">
-            <span className="gradient-name text-3xl font-extrabold">HS</span>
+          {/* Rotating gradient halo + profile photo core */}
+          <div className="relative w-32 h-32 flex items-center justify-center">
+            <motion.div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background:
+                  'conic-gradient(from 0deg, transparent 0%, rgba(162,28,175,0.65) 22%, transparent 48%, rgba(233,222,251,0.8) 72%, transparent 100%)',
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+            />
+            <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-surface shadow-lg">
+              <img
+                src="/portfolio/hs-pic.jpeg"
+                alt={resume.name}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: '50% 18%' }}
+                draggable={false}
+              />
+            </div>
           </div>
 
           {/* Skill badges arranged evenly around the orbit */}
