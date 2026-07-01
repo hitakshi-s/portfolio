@@ -102,7 +102,7 @@ export function About() {
           </ScrollReveal>
 
           {/* Right, row 2: Narrative — top/bottom edges aligned with the photo */}
-          <div className="lg:col-start-2 lg:row-start-2 flex flex-col justify-between">
+          <div className="lg:col-start-2 lg:row-start-2 flex flex-col justify-between gap-6">
             {resume.about.paragraphs.map((para, i) => (
               <ScrollReveal key={i} delay={0.2 + i * 0.1}>
                 <p className="text-text-muted leading-relaxed text-base sm:text-lg">{para}</p>
