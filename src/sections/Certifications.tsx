@@ -33,7 +33,7 @@ function CertCard({ cert, delay }: { cert: Certification; delay: number }) {
       <div style={{ perspective: '900px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
         <motion.div
           className={cn(
-            'h-full border rounded-2xl p-5 transition-colors duration-300',
+            'h-[176px] border rounded-2xl p-5 transition-colors duration-300',
             cert.featured ? 'bg-accent-light border-accent/30' : 'bg-surface border-border'
           )}
           animate={{
@@ -70,7 +70,7 @@ function CertCard({ cert, delay }: { cert: Certification; delay: number }) {
                   </span>
                 )}
               </div>
-              <p className="text-sm font-semibold text-text-primary leading-snug">{cert.name}</p>
+              <p className="text-sm font-semibold text-text-primary leading-snug line-clamp-4">{cert.name}</p>
             </div>
           </div>
         </motion.div>

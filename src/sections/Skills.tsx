@@ -78,7 +78,7 @@ export function Skills() {
         <SectionHeader
           label="Expertise"
           title="Skills & Capabilities"
-          subtitle="A full-stack brand toolkit — from strategy and content to platforms, analytics, and team leadership."
+          subtitle="A full-stack brand toolkit, from strategy and content to platforms, analytics, and team leadership."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

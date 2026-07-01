@@ -30,7 +30,7 @@ export function Contact() {
     >
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal>
-          <span className="text-base md:text-lg font-semibold uppercase tracking-widest text-accent">
+          <span className="text-base md:text-lg font-bold uppercase tracking-widest text-accent">
             Get in Touch
           </span>
         </ScrollReveal>

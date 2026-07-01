@@ -149,6 +149,8 @@ export const resume = {
     { name: 'Introduction to Project Management with ClickUp', issuer: 'ClickUp' },
     { name: 'Instagram Planning: Manage Content Like a Pro', issuer: 'Coursera' },
     { name: 'Build Your Business Brand Using Canva', issuer: 'Coursera' },
+    { name: 'Brand Analysis and Process Management', issuer: 'Coursera' },
+    { name: '5 Ways to Build a Better LinkedIn Profile', issuer: 'Coursera' },
   ] as Certification[],
 
   education: [

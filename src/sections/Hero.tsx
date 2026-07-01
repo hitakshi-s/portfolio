@@ -155,7 +155,7 @@ export function Hero() {
             <span className="text-text-muted font-light">{resume.name.split(' ')[1]}</span>
           </motion.h1>
 
-          <motion.div {...fadeUp(0.5)} className="mt-5 text-xl sm:text-2xl font-semibold text-text-primary">
+          <motion.div {...fadeUp(0.5)} className="mt-5 text-lg sm:text-xl font-semibold text-text-primary whitespace-nowrap">
             <AnimatedText texts={resume.taglines} className="text-accent" />
           </motion.div>
 

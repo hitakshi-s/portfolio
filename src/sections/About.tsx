@@ -77,32 +77,32 @@ function ProfileAvatar() {
 
 export function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 px-6 md:px-12 lg:px-24 xl:px-32 bg-background">
+    <section id="about" className="pt-24 lg:pt-32 pb-10 lg:pb-14 px-6 md:px-12 lg:px-24 xl:px-32 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <span className="text-sm md:text-base font-semibold uppercase tracking-widest text-accent">About</span>
+          <span className="text-sm md:text-base font-bold uppercase tracking-widest text-accent">About</span>
         </ScrollReveal>
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-          {/* Left: Pull quote */}
+          {/* Left: Photo tile */}
           <ScrollReveal delay={0.1}>
             <div className="lg:sticky lg:top-32">
+              <ProfileAvatar />
+            </div>
+          </ScrollReveal>
+
+          {/* Right: Pull quote + narrative */}
+          <div className="space-y-6">
+            <ScrollReveal delay={0.1}>
               <blockquote className="text-2xl sm:text-3xl font-bold text-text-primary leading-snug">
                 <span className="text-accent font-serif text-5xl leading-none mr-1">&ldquo;</span>
                 {resume.about.pullQuote}
                 <span className="text-accent font-serif text-5xl leading-none ml-1">&rdquo;</span>
               </blockquote>
-              <div className="mt-8 h-px bg-gradient-to-r from-accent/40 to-transparent" />
-              <div className="mt-8">
-                <ProfileAvatar />
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Right: Narrative */}
-          <div className="space-y-6">
+              <div className="mt-6 h-px bg-gradient-to-r from-accent/40 to-transparent" />
+            </ScrollReveal>
             {resume.about.paragraphs.map((para, i) => (
-              <ScrollReveal key={i} delay={0.15 + i * 0.1}>
+              <ScrollReveal key={i} delay={0.2 + i * 0.1}>
                 <p className="text-text-muted leading-relaxed text-base sm:text-lg">{para}</p>
               </ScrollReveal>
             ))}

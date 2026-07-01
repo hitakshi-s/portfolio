@@ -10,7 +10,7 @@ export function SectionHeader({ label, title, subtitle }: Props) {
   return (
     <div className="mb-16">
       <ScrollReveal>
-        <span className="text-sm md:text-base font-semibold uppercase tracking-widest text-accent">{label}</span>
+        <span className="text-sm md:text-base font-bold uppercase tracking-widest text-accent">{label}</span>
       </ScrollReveal>
       <ScrollReveal delay={0.1}>
         <h2 className="mt-3 text-3xl md:text-4xl font-bold text-text-primary">{title}</h2>
