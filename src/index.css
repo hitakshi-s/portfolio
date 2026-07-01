@@ -9,10 +9,10 @@
   --color-border: 232 228 223;
   --color-text-primary: 26 20 16;
   --color-text-muted: 107 101 96;
-  --color-accent: 194 24 91;
-  --color-accent-light: 252 228 236;
-  --aurora-1: #FCE4EC;
-  --aurora-2: #FFF8E1;
+  --color-accent: 162 28 175;
+  --color-accent-light: 250 232 255;
+  --aurora-1: #F5E4FB;
+  --aurora-2: #E9DEFB;
 }
 
 /* Dark theme */
@@ -22,10 +22,10 @@
   --color-border: 46 46 46;
   --color-text-primary: 245 240 235;
   --color-text-muted: 140 132 128;
-  --color-accent: 194 24 91;
-  --color-accent-light: 61 10 32;
-  --aurora-1: #3D0A20;
-  --aurora-2: #1A1000;
+  --color-accent: 162 28 175;
+  --color-accent-light: 74 4 78;
+  --aurora-1: #3B0A42;
+  --aurora-2: #1B0A33;
 }
 
 @layer base {
@@ -65,9 +65,9 @@
   background: linear-gradient(
     90deg,
     rgb(var(--color-text-primary)) 0%,
-    #C2185B 40%,
+    #A21CAF 40%,
     rgb(var(--color-text-primary)) 80%,
-    #C2185B 100%
+    #A21CAF 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

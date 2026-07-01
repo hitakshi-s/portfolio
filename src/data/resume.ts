@@ -37,12 +37,12 @@ export const resume = {
   email: 'hitakshisharma.business@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hitakshisharma',
   headline: 'D2C Brand Strategist · 6+ Years',
-  taglines: ['Brand Builder', 'Campaign Architect', 'Team Leader', 'D2C Strategist'] as string[],
+  taglines: ['Team Leader', 'Brand Manager', 'Organic Social Media Strategist'] as string[],
   summary:
     'D2C Growth Specialist | Digital Marketing | Brand Management | Social Media Strategy | Full-Stack Organic | 300% Organic Growth | Consumer Behavior | Product Launch Strategy',
 
   about: {
-    pullQuote: "I don't just manage social media — I build the brand behind it.",
+    pullQuote: 'I don’t just manage brands, I build them.',
     paragraphs: [
       'D2C marketing professional with 6+ years of experience in brand management, organic marketing, social media strategy, content marketing, influencer collaborations, and marketplace management. Passionate about building brands through strategic storytelling, community-first content, and scalable organic growth. Successfully achieved over 300% organic growth for a D2C brand by developing data-driven social media strategies, high-impact campaigns, and audience engagement initiatives.',
       'Proficient in leveraging AI-powered tools such as ChatGPT, Claude, Gemini, Perplexity, Figma AI, Canva AI, Meta AI, InVideo, VEED, Pictory AI, Lovable, ManyChat, and other automation platforms to streamline content creation, campaign planning, research, workflow automation, and marketing operations.',
@@ -52,7 +52,7 @@ export const resume = {
       { value: '6+', label: 'Years Experience' },
       { value: '5', label: 'Platforms Mastered' },
       { value: '3', label: 'D2C Brands Built' },
-      { value: '2', label: 'IIM Certifications' },
+      { value: '1', label: 'IIM Certification' },
     ] as Stat[],
   },
 
@@ -88,16 +88,6 @@ export const resume = {
       tags: ['Shopify', 'Google Ads', 'Facebook Ads', 'Amazon', 'Flipkart', 'Meesho', 'Razorpay', 'ShipRocket'],
     },
     {
-      role: 'Customer Sales Executive',
-      company: 'Vision Eye Plus',
-      companyUrl: '#',
-      location: 'Ahmedabad, Gujarat',
-      period: 'Aug 2017 — Dec 2019',
-      narrative:
-        'Conducted front-end customer sales and built long-term client relationships through consistent follow-up and after-sales support. Delivered product knowledge training sessions and developed team capability through structured role plays.',
-      tags: ['Sales', 'Customer Engagement', 'Training', 'Client Relations'],
-    },
-    {
       role: 'Sales Associate',
       company: 'Heet Healthcare',
       companyUrl: 'https://www.heethealthcare.com/',
@@ -106,6 +96,16 @@ export const resume = {
       narrative:
         'Managed documentation for online healthcare software, handled billing and Excel-based record keeping, and submitted daily sales reports verified by management.',
       tags: ['Healthcare', 'Documentation', 'Sales Reporting'],
+    },
+    {
+      role: 'Customer Sales Executive',
+      company: 'Vision Eye Plus',
+      companyUrl: '#',
+      location: 'Ahmedabad, Gujarat',
+      period: 'Aug 2017 — Dec 2019',
+      narrative:
+        'Conducted front-end customer sales and built long-term client relationships through consistent follow-up and after-sales support. Delivered product knowledge training sessions and developed team capability through structured role plays.',
+      tags: ['Sales', 'Customer Engagement', 'Training', 'Client Relations'],
     },
   ] as Experience[],
 
@@ -124,7 +124,7 @@ export const resume = {
     },
     {
       category: 'Tools & Tech',
-      skills: ['Google Ads', 'Facebook Ads', 'Amazon Seller', 'Razorpay', 'ShipRocket', 'AI Content Tools', 'WhatsApp Marketing'],
+      skills: ['Canva', 'Figma', 'Manychat', 'Flipkart Seller', 'Amazon Seller', 'Razorpay', 'ShipRocket', 'AI Content Tools', 'WhatsApp Marketing'],
     },
     {
       category: 'Leadership',
@@ -138,7 +138,6 @@ export const resume = {
 
   certifications: [
     { name: 'Leadership Skills', issuer: 'IIM Ahmedabad', featured: true },
-    { name: 'AI in Digital and Social Media Marketing', issuer: 'IIM Bangalore', featured: true },
     { name: 'Business Communication, Interpersonal Skills & Time Management', issuer: 'Skillephant' },
     { name: 'Amazon Account Management Services', issuer: 'Amazon' },
     { name: 'Stock Market Introduction', issuer: 'LearnTube' },
@@ -147,11 +146,14 @@ export const resume = {
     { name: 'Simplifying Social Media Management with AI', issuer: 'LearnTube' },
     { name: 'Creating Social Media Visuals with AI', issuer: 'LearnTube' },
     { name: 'Strategically Build and Engage Your Network on LinkedIn', issuer: 'Coursera' },
+    { name: 'Introduction to Project Management with ClickUp', issuer: 'ClickUp' },
+    { name: 'Instagram Planning: Manage Content Like a Pro', issuer: 'Coursera' },
+    { name: 'Build Your Business Brand Using Canva', issuer: 'Coursera' },
   ] as Certification[],
 
   education: [
-    { degree: 'Masters in Commerce', institution: 'Neeldeep Comm. College', location: 'Ahmedabad, Gujarat', year: '2021' },
     { degree: 'Bachelors in Commerce', institution: 'New LJ Comm. College', location: 'Ahmedabad, Gujarat', year: '2019' },
+    { degree: 'Masters in Commerce', institution: 'Neeldeep Comm. College', location: 'Ahmedabad, Gujarat', year: '2021' },
     { degree: 'Digital Marketing Certification', institution: 'Career Ninja, LearnTube', location: 'Online', year: '2021' },
   ] as Education[],
 }

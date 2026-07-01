@@ -6,11 +6,11 @@ import { cn } from '../utils/cn'
 
 const issuerColors: Record<string, string> = {
   'IIM Ahmedabad': 'bg-blue-50 text-blue-700 border-blue-200',
-  'IIM Bangalore': 'bg-indigo-50 text-indigo-700 border-indigo-200',
   Coursera: 'bg-sky-50 text-sky-700 border-sky-200',
   Amazon: 'bg-amber-50 text-amber-700 border-amber-200',
   Skillephant: 'bg-purple-50 text-purple-700 border-purple-200',
   LearnTube: 'bg-green-50 text-green-700 border-green-200',
+  ClickUp: 'bg-teal-50 text-teal-700 border-teal-200',
 }
 
 function CertCard({ cert, delay }: { cert: Certification; delay: number }) {
@@ -67,11 +67,11 @@ export function Certifications() {
         <SectionHeader
           label="Certifications"
           title="Credentials & Learning"
-          subtitle="Continuously upskilling across AI, marketing, and leadership — including programs from IIM Ahmedabad and IIM Bangalore."
+          subtitle="Continuously upskilling across AI, marketing, and leadership — including a program from IIM Ahmedabad."
         />
 
-        {/* Featured IIM certifications */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        {/* Featured IIM certification */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 sm:max-w-[calc(50%-0.5rem)]">
           {featured.map((cert, i) => (
             <CertCard key={cert.name} cert={cert} delay={i * 0.1} />
           ))}

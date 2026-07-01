@@ -30,7 +30,7 @@ function SkillCard({ category, skills, delay }: SkillCategory & { delay: number 
           rotateX: tilt.x,
           rotateY: tilt.y,
           y: tilt.hover ? -5 : 0,
-          boxShadow: tilt.hover ? '0 12px 32px rgba(194,24,91,0.13)' : '0 1px 3px rgba(0,0,0,0.05)',
+          boxShadow: tilt.hover ? '0 12px 32px rgba(162,28,175,0.13)' : '0 1px 3px rgba(0,0,0,0.05)',
         }}
         transition={{ type: 'spring', stiffness: 280, damping: 20 }}
         style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
@@ -40,7 +40,7 @@ function SkillCard({ category, skills, delay }: SkillCategory & { delay: number 
           <div
             className="absolute inset-0 pointer-events-none rounded-2xl"
             style={{
-              background: 'linear-gradient(105deg, transparent 40%, rgba(194,24,91,0.06) 50%, transparent 60%)',
+              background: 'linear-gradient(105deg, transparent 40%, rgba(162,28,175,0.06) 50%, transparent 60%)',
               animation: 'shimmer-sweep 0.8s ease forwards',
             }}
           />

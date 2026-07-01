@@ -33,7 +33,7 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
             rotateX: tilt.x,
             rotateY: tilt.y,
             y: tilt.hover ? -5 : 0,
-            boxShadow: tilt.hover ? '0 14px 36px rgba(194,24,91,0.12)' : '0 1px 4px rgba(0,0,0,0.06)',
+            boxShadow: tilt.hover ? '0 14px 36px rgba(162,28,175,0.12)' : '0 1px 4px rgba(0,0,0,0.06)',
           }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}

@@ -14,12 +14,15 @@ function LinkedinIcon({ size = 16 }: { size?: number }) {
 import { AnimatedText } from '../components/AnimatedText'
 import { resume } from '../data/resume'
 
+const ORBIT_RADIUS = 190
+
 const floatingBadges = [
-  { text: 'IIM Certified', top: '12%', right: '8%', delay: 0 },
-  { text: 'Influencer Marketing', top: '32%', right: '-2%', delay: 0.4 },
-  { text: 'Shopify Expert', top: '52%', right: '10%', delay: 0.8 },
-  { text: 'AI Content', top: '68%', right: '2%', delay: 1.2 },
-  { text: 'D2C Strategy', top: '82%', right: '14%', delay: 0.6 },
+  { text: 'IIMA Certified', angle: 0, delay: 0 },
+  { text: 'Social Media Strategist', angle: 60, delay: 0.5 },
+  { text: 'AI Content', angle: 120, delay: 1 },
+  { text: 'Influencer Marketing', angle: 180, delay: 0.3 },
+  { text: 'D2C Strategy', angle: 240, delay: 0.8 },
+  { text: 'Product Marketing', angle: 300, delay: 1.3 },
 ]
 
 const heroParticles = [
@@ -90,21 +93,21 @@ export function Hero() {
         {/* Silk layer 1 — drifts center-left */}
         <motion.div
           className="absolute top-1/3 -left-16 w-[320px] h-[320px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(194,24,91,0.07) 0%, transparent 70%)', y: blob3Y }}
+          style={{ background: 'radial-gradient(circle, rgba(162,28,175,0.07) 0%, transparent 70%)', y: blob3Y }}
           animate={{ x: [0, 30, -10, 0], y: [0, -20, 15, 0], scale: [1, 1.12, 0.96, 1] }}
           transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
         />
         {/* Silk layer 2 — drifts top-center */}
         <motion.div
           className="absolute -top-10 left-1/3 w-[260px] h-[260px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(252,228,236,0.55) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(233,222,251,0.55) 0%, transparent 70%)' }}
           animate={{ x: [0, -25, 12, 0], y: [0, 18, -12, 0], scale: [0.95, 1.1, 0.98, 0.95], opacity: [0.4, 0.75, 0.5, 0.4] }}
           transition={{ duration: 19, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
         />
         {/* Silk layer 3 — bottom-right accent */}
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-[200px] h-[200px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(194,24,91,0.05) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(162,28,175,0.05) 0%, transparent 70%)' }}
           animate={{ x: [0, 20, -15, 0], y: [0, -15, 20, 0], scale: [1, 0.9, 1.05, 1] }}
           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
         />
@@ -176,46 +179,55 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Right: Abstract decorative shape + floating badges — hidden on mobile */}
+        {/* Right: Orbit ring visual + floating skill badges — hidden on mobile */}
         <div className="relative hidden lg:flex items-center justify-center lg:h-[480px]">
+          {/* Outer dashed ring — slow, non-pulsing rotation */}
           <motion.div
-            className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 70, repeat: Infinity, ease: 'linear' }}
-          >
-            <div
-              className="absolute inset-0 border-2 border-accent/20 bg-accent-light/50"
-              style={{ borderRadius: '40% 60% 60% 40% / 40% 40% 60% 60%' }}
-            />
-            <motion.div
-              className="absolute inset-6 bg-accent/8"
-              style={{ borderRadius: '60% 40% 40% 60% / 60% 60% 40% 40%' }}
-              animate={{ rotate: [0, -360] }}
-              transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-            />
-            <motion.div
-              className="absolute inset-14 bg-accent/15 rounded-full"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </motion.div>
+            className="absolute w-80 h-80 rounded-full border border-dashed border-accent/25"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+          />
+          {/* Inner dashed ring — opposite direction */}
+          <motion.div
+            className="absolute w-56 h-56 rounded-full border border-dashed border-accent/20"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          />
+          {/* Soft glow halo behind the core */}
+          <div
+            className="absolute w-40 h-40 rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(162,28,175,0.18) 0%, transparent 70%)' }}
+          />
+          {/* Static monogram core */}
+          <div className="relative w-28 h-28 rounded-full bg-surface border border-accent/30 shadow-lg flex items-center justify-center">
+            <span className="gradient-name text-3xl font-extrabold">HS</span>
+          </div>
 
-          {/* Floating badge pills */}
-          {floatingBadges.map((badge) => (
-            <motion.div
-              key={badge.text}
-              className="absolute px-3 py-1.5 text-xs font-medium bg-surface/90 backdrop-blur-sm border border-border rounded-full text-text-muted shadow-sm whitespace-nowrap"
-              style={{ top: badge.top, right: badge.right }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, y: [0, -6, 0] }}
-              transition={{
-                opacity: { delay: badge.delay + 1.2, duration: 0.5 },
-                y: { duration: 3.5 + badge.delay * 0.3, repeat: Infinity, ease: 'easeInOut', delay: badge.delay },
-              }}
-            >
-              {badge.text}
-            </motion.div>
-          ))}
+          {/* Skill badges arranged evenly around the orbit */}
+          {floatingBadges.map((badge) => {
+            const rad = (badge.angle * Math.PI) / 180
+            const x = ORBIT_RADIUS * Math.sin(rad)
+            const y = -ORBIT_RADIUS * Math.cos(rad)
+            return (
+              <div
+                key={badge.text}
+                className="absolute"
+                style={{ top: `calc(50% + ${y}px)`, left: `calc(50% + ${x}px)`, transform: 'translate(-50%, -50%)' }}
+              >
+                <motion.div
+                  className="px-3 py-1.5 text-xs font-medium bg-surface/90 backdrop-blur-sm border border-border rounded-full text-text-muted shadow-sm whitespace-nowrap"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, y: [0, -6, 0] }}
+                  transition={{
+                    opacity: { delay: badge.delay + 1.2, duration: 0.5 },
+                    y: { duration: 3.5 + badge.delay * 0.3, repeat: Infinity, ease: 'easeInOut', delay: badge.delay },
+                  }}
+                >
+                  {badge.text}
+                </motion.div>
+              </div>
+            )
+          })}
         </div>
       </div>
 
@@ -226,7 +238,6 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8, duration: 0.6 }}
       >
-        <span className="text-xs text-text-muted uppercase tracking-widest">Scroll</span>
         <motion.div
           className="w-0.5 h-8 bg-gradient-to-b from-accent to-transparent rounded-full"
           animate={{ scaleY: [0, 1, 0] }}

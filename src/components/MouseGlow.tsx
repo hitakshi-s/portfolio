@@ -34,7 +34,7 @@ export function MouseGlow() {
         width: '400px',
         height: '400px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(194,24,91,0.07) 0%, rgba(194,24,91,0.02) 45%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(162,28,175,0.07) 0%, rgba(162,28,175,0.02) 45%, transparent 70%)',
         top: 0,
         left: 0,
         transition: 'transform 0.12s linear',

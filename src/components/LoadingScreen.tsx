@@ -18,21 +18,21 @@ export function LoadingScreen({ onComplete }: Props) {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.45, ease: 'easeOut' }}
-          className="text-5xl font-extrabold tracking-tight text-text-primary"
+          className="text-7xl sm:text-8xl font-extrabold tracking-tight text-text-primary"
         >
           HS
         </motion.div>
         <motion.div
-          className="mt-3 h-0.5 bg-accent rounded-full"
+          className="mt-4 h-0.5 bg-accent rounded-full"
           initial={{ width: 0 }}
-          animate={{ width: 48 }}
+          animate={{ width: 64 }}
           transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
         />
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.4 }}
-          className="mt-4 text-xs tracking-widest uppercase text-text-muted"
+          className="mt-5 text-base sm:text-lg tracking-widest uppercase text-text-muted"
         >
           Hitakshi Sharma
         </motion.p>

@@ -28,36 +28,36 @@ function ProfileAvatar() {
     const rect = e.currentTarget.getBoundingClientRect()
     const cx = rect.left + rect.width / 2
     const cy = rect.top + rect.height / 2
-    const x = ((e.clientY - cy) / (rect.height / 2)) * 14
-    const y = -((e.clientX - cx) / (rect.width / 2)) * 14
+    const x = ((e.clientY - cy) / (rect.height / 2)) * 10
+    const y = -((e.clientX - cx) / (rect.width / 2)) * 10
     setTilt({ x, y })
   }
 
   return (
     <div
-      className="relative w-12 h-12 flex-shrink-0 cursor-pointer"
-      style={{ perspective: '400px' }}
+      className="relative w-28 h-32 sm:w-32 sm:h-36 flex-shrink-0 cursor-pointer"
+      style={{ perspective: '600px' }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => { setTilt({ x: 0, y: 0 }); setHovered(false) }}
     >
       {/* Glow ring */}
       <motion.div
-        className="absolute -inset-1 rounded-full bg-accent/30"
-        animate={{ scale: hovered ? [1, 1.15, 1] : 1, opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.6, repeat: hovered ? Infinity : 0 }}
+        className="absolute -inset-1.5 rounded-3xl bg-gradient-to-br from-accent/40 to-accent/10"
+        animate={{ scale: hovered ? 1.04 : 1, opacity: hovered ? 1 : 0.6 }}
+        transition={{ duration: 0.4 }}
       />
 
       {/* 3D-tilting card */}
       <motion.div
-        className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent/40 shadow-lg"
+        className="w-full h-full rounded-2xl overflow-hidden border-2 border-accent/30 shadow-lg"
         animate={{
           rotateX: tilt.x,
           rotateY: tilt.y,
-          scale: hovered ? 1.12 : 1,
+          scale: hovered ? 1.03 : 1,
           boxShadow: hovered
-            ? '0 8px 24px rgba(194,24,91,0.35)'
-            : '0 2px 8px rgba(0,0,0,0.12)',
+            ? '0 12px 32px rgba(162,28,175,0.3)'
+            : '0 4px 14px rgba(0,0,0,0.1)',
         }}
         transition={{ type: 'spring', stiffness: 260, damping: 18 }}
         style={{ transformStyle: 'preserve-3d' }}
@@ -79,7 +79,7 @@ export function About() {
     <section id="about" className="py-24 lg:py-32 px-6 md:px-12 lg:px-24 xl:px-32 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">About</span>
+          <span className="text-sm md:text-base font-semibold uppercase tracking-widest text-accent">About</span>
         </ScrollReveal>
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
@@ -87,12 +87,12 @@ export function About() {
           <ScrollReveal delay={0.1}>
             <div className="lg:sticky lg:top-32">
               <blockquote className="text-2xl sm:text-3xl font-bold text-text-primary leading-snug">
-                <span className="text-accent font-serif text-5xl leading-none mr-1">"</span>
+                <span className="text-accent font-serif text-5xl leading-none mr-1">&ldquo;</span>
                 {resume.about.pullQuote}
-                <span className="text-accent font-serif text-5xl leading-none ml-1">"</span>
+                <span className="text-accent font-serif text-5xl leading-none ml-1">&rdquo;</span>
               </blockquote>
               <div className="mt-8 h-px bg-gradient-to-r from-accent/40 to-transparent" />
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-6 flex items-center gap-4">
                 <ProfileAvatar />
                 <div>
                   <p className="text-sm font-semibold text-text-primary">{resume.name}</p>

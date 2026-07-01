@@ -30,7 +30,7 @@ export function Contact() {
     >
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal>
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+          <span className="text-base md:text-lg font-semibold uppercase tracking-widest text-accent">
             Get in Touch
           </span>
         </ScrollReveal>
@@ -45,7 +45,7 @@ export function Contact() {
         <ScrollReveal delay={0.2}>
           <p className="mt-6 text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
             Open to brand strategy, social media leadership, and D2C growth roles. Whether you're
-            launching a brand or scaling one — let's talk.
+            launching a brand or scaling one, let's talk.
           </p>
         </ScrollReveal>
 
