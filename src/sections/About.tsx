@@ -80,7 +80,7 @@ export function About() {
     <section id="about" className="pt-24 lg:pt-32 pb-10 lg:pb-14 px-6 md:px-12 lg:px-24 xl:px-32 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <span className="text-sm md:text-base font-bold uppercase tracking-widest text-accent">About</span>
+          <span className="text-sm md:text-base font-extrabold uppercase tracking-widest text-accent">About</span>
         </ScrollReveal>
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-8">
