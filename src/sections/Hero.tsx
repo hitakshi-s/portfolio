@@ -34,6 +34,15 @@ const heroParticles = [
   { left: '88%', top: '38%', delay: 0.3, size: 4 },
 ]
 
+const twinkleStars = [
+  { top: '6%', left: '18%', delay: 0,   size: 3 },
+  { top: '14%', left: '92%', delay: 0.6, size: 2 },
+  { top: '88%', left: '85%', delay: 1.1, size: 3 },
+  { top: '92%', left: '14%', delay: 1.6, size: 2 },
+  { top: '48%', left: '2%', delay: 0.9, size: 2 },
+  { top: '35%', left: '98%', delay: 1.9, size: 3 },
+]
+
 function MagneticCTA({ href, children, className, download, target, rel }: {
   href: string; children: React.ReactNode; className: string;
   download?: boolean; target?: string; rel?: string;
@@ -181,6 +190,31 @@ export function Hero() {
 
         {/* Right: Orbit ring visual + floating skill badges — hidden on mobile */}
         <div className="relative hidden lg:flex items-center justify-center lg:h-[480px]">
+          {/* Twinkling stars scattered across the visual */}
+          {twinkleStars.map((star, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-accent/70"
+              style={{
+                top: star.top, left: star.left,
+                width: star.size, height: star.size,
+                animation: `twinkle ${2.4 + star.delay}s ease-in-out ${star.delay}s infinite`,
+              }}
+            />
+          ))}
+
+          {/* Shooting star streak — crosses periodically */}
+          <motion.div
+            className="absolute w-16 h-px rounded-full"
+            style={{
+              top: '18%', left: '-5%',
+              background: 'linear-gradient(90deg, transparent, rgba(162,28,175,0.9), transparent)',
+              rotate: -22,
+            }}
+            animate={{ x: [0, 460], opacity: [0, 1, 1, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 6.5, ease: 'easeIn' }}
+          />
+
           {/* Outer dashed ring — slow, non-pulsing rotation */}
           <motion.div
             className="absolute w-80 h-80 rounded-full border border-dashed border-accent/25"
@@ -193,6 +227,22 @@ export function Hero() {
             animate={{ rotate: -360 }}
             transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
           />
+          {/* Orbiting satellite — travels along the outer ring */}
+          <motion.div
+            className="absolute w-80 h-80"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_10px_rgba(162,28,175,0.9)]" />
+          </motion.div>
+          {/* Orbiting satellite — travels along the inner ring, opposite direction */}
+          <motion.div
+            className="absolute w-56 h-56"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-accent/80 shadow-[0_0_8px_rgba(162,28,175,0.7)]" />
+          </motion.div>
           {/* Soft glow halo behind the core */}
           <div
             className="absolute w-40 h-40 rounded-full"

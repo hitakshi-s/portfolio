@@ -67,7 +67,7 @@ function ProfileAvatar() {
           src="/portfolio/hs-pic.jpeg"
           alt={resume.name}
           className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 22%' }}
+          style={{ objectPosition: '50% 36%' }}
           draggable={false}
         />
       </motion.div>
