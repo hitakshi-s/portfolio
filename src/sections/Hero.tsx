@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mail, Download, Star } from 'lucide-react'
+import { Mail, Download } from 'lucide-react'
 
 function LinkedinIcon({ size = 16 }: { size?: number }) {
   return (
@@ -283,19 +283,32 @@ export function Hero() {
               animate={{ rotate: 360 }}
               transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
             />
-            {/* Inner glass core with breathing glow */}
+            {/* 3D sun sphere — shaded gradient body with specular highlight */}
             <motion.div
-              className="absolute inset-2 rounded-full bg-surface/95 backdrop-blur-sm border border-white/50 flex items-center justify-center"
+              className="absolute inset-2 rounded-full"
+              style={{
+                background: `radial-gradient(circle at 34% 30%, #fff7e6 0%, rgb(${COSMIC.amber}) 16%, rgb(${COSMIC.magenta}) 46%, rgb(${COSMIC.indigo}) 78%, #1a0b2e 100%)`,
+                boxShadow:
+                  'inset -8px -8px 18px rgba(0,0,0,0.4), inset 5px 5px 12px rgba(255,255,255,0.5)',
+              }}
               animate={{
                 boxShadow: [
-                  `0 0 16px rgba(${COSMIC.magenta},0.25)`,
-                  `0 0 26px rgba(${COSMIC.indigo},0.35)`,
-                  `0 0 16px rgba(${COSMIC.magenta},0.25)`,
+                  `inset -8px -8px 18px rgba(0,0,0,0.4), inset 5px 5px 12px rgba(255,255,255,0.5), 0 0 22px rgba(${COSMIC.amber},0.5)`,
+                  `inset -8px -8px 18px rgba(0,0,0,0.4), inset 5px 5px 12px rgba(255,255,255,0.5), 0 0 32px rgba(${COSMIC.magenta},0.55)`,
+                  `inset -8px -8px 18px rgba(0,0,0,0.4), inset 5px 5px 12px rgba(255,255,255,0.5), 0 0 22px rgba(${COSMIC.amber},0.5)`,
                 ],
               }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <Star size={26} className="text-accent" fill="currentColor" fillOpacity={0.15} />
+              {/* Specular highlight — glossy shine spot */}
+              <div
+                className="absolute rounded-full"
+                style={{
+                  top: '18%', left: '24%', width: '30%', height: '22%',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.85) 0%, transparent 75%)',
+                  filter: 'blur(2px)',
+                }}
+              />
             </motion.div>
           </div>
 
