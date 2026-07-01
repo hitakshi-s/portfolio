@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mail, Download } from 'lucide-react'
+import { Mail, Download, Star } from 'lucide-react'
 
 function LinkedinIcon({ size = 16 }: { size?: number }) {
   return (
@@ -34,13 +34,16 @@ const heroParticles = [
   { left: '88%', top: '38%', delay: 0.3, size: 4 },
 ]
 
+// Cosmic accent palette — magenta, amber, teal, indigo
+const COSMIC = { magenta: '162,28,175', amber: '245,158,11', teal: '45,212,191', indigo: '99,102,241' }
+
 const twinkleStars = [
-  { top: '6%', left: '18%', delay: 0,   size: 3 },
-  { top: '14%', left: '92%', delay: 0.6, size: 2 },
-  { top: '88%', left: '85%', delay: 1.1, size: 3 },
-  { top: '92%', left: '14%', delay: 1.6, size: 2 },
-  { top: '48%', left: '2%', delay: 0.9, size: 2 },
-  { top: '35%', left: '98%', delay: 1.9, size: 3 },
+  { top: '6%', left: '18%', delay: 0,   size: 3, color: COSMIC.magenta },
+  { top: '14%', left: '92%', delay: 0.6, size: 2, color: COSMIC.amber },
+  { top: '88%', left: '85%', delay: 1.1, size: 3, color: COSMIC.teal },
+  { top: '92%', left: '14%', delay: 1.6, size: 2, color: COSMIC.indigo },
+  { top: '48%', left: '2%', delay: 0.9, size: 2, color: COSMIC.amber },
+  { top: '35%', left: '98%', delay: 1.9, size: 3, color: COSMIC.teal },
 ]
 
 function MagneticCTA({ href, children, className, download, target, rel }: {
@@ -190,25 +193,26 @@ export function Hero() {
 
         {/* Right: Orbit ring visual + floating skill badges — hidden on mobile */}
         <div className="relative hidden lg:flex items-center justify-center lg:h-[480px]">
-          {/* Twinkling stars scattered across the visual */}
+          {/* Twinkling stars scattered across the visual — mixed cosmic hues */}
           {twinkleStars.map((star, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-accent/70"
+              className="absolute rounded-full"
               style={{
                 top: star.top, left: star.left,
                 width: star.size, height: star.size,
+                backgroundColor: `rgb(${star.color})`,
                 animation: `twinkle ${2.4 + star.delay}s ease-in-out ${star.delay}s infinite`,
               }}
             />
           ))}
 
-          {/* Shooting star streak — crosses periodically */}
+          {/* Shooting star streak — crosses periodically, amber-to-magenta comet trail */}
           <motion.div
             className="absolute w-16 h-px rounded-full"
             style={{
               top: '18%', left: '-5%',
-              background: 'linear-gradient(90deg, transparent, rgba(162,28,175,0.9), transparent)',
+              background: `linear-gradient(90deg, transparent, rgb(${COSMIC.amber}), rgb(${COSMIC.magenta}), transparent)`,
               rotate: -22,
             }}
             animate={{ x: [0, 460], opacity: [0, 1, 1, 0] }}
@@ -227,47 +231,72 @@ export function Hero() {
             animate={{ rotate: -360 }}
             transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
           />
-          {/* Orbiting satellite — travels along the outer ring */}
+          {/* Orbiting satellite — outer ring, magenta */}
           <motion.div
             className="absolute w-80 h-80"
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_10px_rgba(162,28,175,0.9)]" />
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full"
+              style={{ backgroundColor: `rgb(${COSMIC.magenta})`, boxShadow: `0 0 10px rgba(${COSMIC.magenta},0.9)` }}
+            />
           </motion.div>
-          {/* Orbiting satellite — travels along the inner ring, opposite direction */}
+          {/* Orbiting satellite — mid orbit, teal, no visible ring line */}
+          <motion.div
+            className="absolute w-[17rem] h-[17rem]"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 26, repeat: Infinity, ease: 'linear' }}
+          >
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
+              style={{ backgroundColor: `rgb(${COSMIC.teal})`, boxShadow: `0 0 9px rgba(${COSMIC.teal},0.8)` }}
+            />
+          </motion.div>
+          {/* Orbiting satellite — inner ring, amber, opposite direction */}
           <motion.div
             className="absolute w-56 h-56"
             animate={{ rotate: -360 }}
             transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
           >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-accent/80 shadow-[0_0_8px_rgba(162,28,175,0.7)]" />
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: `rgb(${COSMIC.amber})`, boxShadow: `0 0 8px rgba(${COSMIC.amber},0.7)` }}
+            />
           </motion.div>
-          {/* Soft glow halo behind the core */}
-          <div
-            className="absolute w-40 h-40 rounded-full"
-            style={{ background: 'radial-gradient(circle, rgba(162,28,175,0.18) 0%, transparent 70%)' }}
-          />
-          {/* Rotating gradient halo + profile photo core */}
+
+          {/* Cosmic core — glowing multi-hue star at the center of the orbit */}
           <div className="relative w-32 h-32 flex items-center justify-center">
+            {/* Ambient multi-color glow */}
+            <div
+              className="absolute -inset-4 rounded-full blur-xl"
+              style={{
+                background: `radial-gradient(circle, rgba(${COSMIC.magenta},0.35) 0%, rgba(${COSMIC.indigo},0.18) 45%, transparent 75%)`,
+              }}
+            />
+            {/* Rotating nebula surface */}
             <motion.div
               className="absolute inset-0 rounded-full"
               style={{
-                background:
-                  'conic-gradient(from 0deg, transparent 0%, rgba(162,28,175,0.65) 22%, transparent 48%, rgba(233,222,251,0.8) 72%, transparent 100%)',
+                background: `conic-gradient(from 0deg, rgb(${COSMIC.magenta}), rgb(${COSMIC.indigo}), rgb(${COSMIC.teal}), rgb(${COSMIC.amber}), rgb(${COSMIC.magenta}))`,
               }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
             />
-            <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-surface shadow-lg">
-              <img
-                src="/portfolio/hs-pic.jpeg"
-                alt={resume.name}
-                className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 18%' }}
-                draggable={false}
-              />
-            </div>
+            {/* Inner glass core with breathing glow */}
+            <motion.div
+              className="absolute inset-2 rounded-full bg-surface/95 backdrop-blur-sm border border-white/50 flex items-center justify-center"
+              animate={{
+                boxShadow: [
+                  `0 0 16px rgba(${COSMIC.magenta},0.25)`,
+                  `0 0 26px rgba(${COSMIC.indigo},0.35)`,
+                  `0 0 16px rgba(${COSMIC.magenta},0.25)`,
+                ],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Star size={26} className="text-accent" fill="currentColor" fillOpacity={0.15} />
+            </motion.div>
           </div>
 
           {/* Skill badges arranged evenly around the orbit */}
