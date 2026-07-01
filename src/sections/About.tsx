@@ -83,24 +83,26 @@ export function About() {
           <span className="text-sm md:text-base font-bold uppercase tracking-widest text-accent">About</span>
         </ScrollReveal>
 
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-          {/* Left: Photo tile */}
-          <ScrollReveal delay={0.1}>
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-8">
+          {/* Left, row 1: Pull quote sits above the photo */}
+          <ScrollReveal delay={0.1} className="lg:col-start-1 lg:row-start-1">
+            <blockquote className="text-2xl sm:text-3xl font-bold text-text-primary leading-snug">
+              <span className="text-accent font-serif text-5xl leading-none mr-1">&ldquo;</span>
+              {resume.about.pullQuote}
+              <span className="text-accent font-serif text-5xl leading-none ml-1">&rdquo;</span>
+            </blockquote>
+            <div className="mt-8 h-px bg-gradient-to-r from-accent/40 to-transparent" />
+          </ScrollReveal>
+
+          {/* Left, row 2: Photo tile */}
+          <ScrollReveal delay={0.15} className="lg:col-start-1 lg:row-start-2">
             <div className="lg:sticky lg:top-32">
               <ProfileAvatar />
             </div>
           </ScrollReveal>
 
-          {/* Right: Pull quote + narrative */}
-          <div className="space-y-6">
-            <ScrollReveal delay={0.1}>
-              <blockquote className="text-2xl sm:text-3xl font-bold text-text-primary leading-snug">
-                <span className="text-accent font-serif text-5xl leading-none mr-1">&ldquo;</span>
-                {resume.about.pullQuote}
-                <span className="text-accent font-serif text-5xl leading-none ml-1">&rdquo;</span>
-              </blockquote>
-              <div className="mt-6 h-px bg-gradient-to-r from-accent/40 to-transparent" />
-            </ScrollReveal>
+          {/* Right, row 2: Narrative — top/bottom edges aligned with the photo */}
+          <div className="lg:col-start-2 lg:row-start-2 flex flex-col justify-between">
             {resume.about.paragraphs.map((para, i) => (
               <ScrollReveal key={i} delay={0.2 + i * 0.1}>
                 <p className="text-text-muted leading-relaxed text-base sm:text-lg">{para}</p>
