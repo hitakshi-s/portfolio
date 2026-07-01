@@ -86,10 +86,10 @@ export function About() {
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-8">
           {/* Left, row 1: Pull quote sits above the photo */}
           <ScrollReveal delay={0.1} className="lg:col-start-1 lg:row-start-1">
-            <blockquote className="text-2xl sm:text-3xl xl:text-xl font-bold text-text-primary leading-snug xl:whitespace-nowrap text-center">
-              <span className="text-accent font-serif text-5xl leading-none mr-1">&ldquo;</span>
+            <blockquote className="text-[13px] sm:text-3xl xl:text-xl font-bold text-text-primary leading-snug whitespace-nowrap sm:whitespace-normal xl:whitespace-nowrap text-center">
+              <span className="text-accent font-serif text-2xl sm:text-5xl leading-none mr-1">&ldquo;</span>
               {resume.about.pullQuote}
-              <span className="text-accent font-serif text-5xl leading-none ml-1">&rdquo;</span>
+              <span className="text-accent font-serif text-2xl sm:text-5xl leading-none ml-1">&rdquo;</span>
             </blockquote>
             <div className="mt-8 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           </ScrollReveal>
