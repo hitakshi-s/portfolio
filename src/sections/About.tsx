@@ -36,7 +36,7 @@ function ProfileAvatar() {
 
   return (
     <div
-      className="relative w-full h-[400px] sm:h-[460px] lg:h-[520px] cursor-pointer"
+      className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px] mx-auto aspect-[2/3] cursor-pointer"
       style={{ perspective: '500px' }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
@@ -67,7 +67,7 @@ function ProfileAvatar() {
           src={`${import.meta.env.BASE_URL}hs-pic.jpeg`}
           alt={resume.name}
           className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 36%' }}
+          style={{ objectPosition: '50% 18%' }}
           draggable={false}
         />
       </motion.div>
