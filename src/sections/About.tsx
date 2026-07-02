@@ -64,7 +64,7 @@ function ProfileAvatar() {
         style={{ transformStyle: 'preserve-3d' }}
       >
         <img
-          src="/portfolio/hs-pic.jpeg"
+          src={`${import.meta.env.BASE_URL}hs-pic.jpeg`}
           alt={resume.name}
           className="w-full h-full object-cover"
           style={{ objectPosition: '50% 36%' }}
