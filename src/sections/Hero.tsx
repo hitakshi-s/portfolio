@@ -178,7 +178,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-6 py-3 border border-border bg-surface text-text-primary font-semibold rounded-full hover:border-accent hover:text-accent hover:bg-accent-light transition-colors duration-200"
             >
               <FileBarChart size={16} />
-              Project Results
+              Campaign Results
             </MagneticCTA>
             <MagneticCTA
               href={resume.linkedin}
