@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mail, Download } from 'lucide-react'
+import { Mail, Download, FileBarChart } from 'lucide-react'
 
 function LinkedinIcon({ size = 16 }: { size?: number }) {
   return (
@@ -171,6 +171,14 @@ export function Hero() {
             >
               <Download size={16} />
               Download Resume
+            </MagneticCTA>
+            <MagneticCTA
+              href="/portfolio/project-results.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border bg-surface text-text-primary font-semibold rounded-full hover:border-accent hover:text-accent hover:bg-accent-light transition-colors duration-200"
+            >
+              <FileBarChart size={16} />
+              Project Results
             </MagneticCTA>
             <MagneticCTA
               href={resume.linkedin}
