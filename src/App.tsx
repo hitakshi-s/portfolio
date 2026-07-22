@@ -11,6 +11,7 @@ import { About } from './sections/About'
 import { Experience } from './sections/Experience'
 import { Skills } from './sections/Skills'
 import { Certifications } from './sections/Certifications'
+import { Blog } from './sections/Blog'
 import { Education } from './sections/Education'
 import { Contact } from './sections/Contact'
 import { Footer } from './components/Footer'
@@ -34,6 +35,7 @@ export default function App() {
           <Experience />
           <Skills />
           <Certifications />
+          <Blog />
           <Education />
           <Contact />
         </main>
