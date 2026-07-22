@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { firebaseEnabled, loadFirestore } from '../lib/firebase'
+import { loadSupabase, supabaseEnabled } from '../lib/supabase'
 
 const MAX_CLAPS_PER_USER = 50
 const FLUSH_DELAY_MS = 600
@@ -28,31 +28,49 @@ export function ClapButton({ slug }: Props) {
   }, [slug])
 
   useEffect(() => {
-    if (!firebaseEnabled) return
-    let unsub: (() => void) | undefined
+    if (!supabaseEnabled) return
     let cancelled = false
+    let unsubscribe: (() => void) | undefined
 
-    loadFirestore().then((fs) => {
-      if (!fs || cancelled) return
-      unsub = fs.onSnapshot(fs.doc(fs.db, 'blogClaps', slug), (snap) => {
-        setTotalClaps((snap.data()?.count as number | undefined) ?? 0)
-      })
+    loadSupabase().then(async (supabase) => {
+      if (!supabase || cancelled) return
+
+      const { data } = await supabase.from('blog_claps').select('count').eq('slug', slug).maybeSingle()
+      if (!cancelled) setTotalClaps(data?.count ?? 0)
+
+      const channel = supabase
+        .channel(`blog_claps:${slug}`)
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'blog_claps', filter: `slug=eq.${slug}` },
+          (payload) => {
+            const newCount = (payload.new as { count?: number } | null)?.count
+            if (typeof newCount === 'number') setTotalClaps(newCount)
+          }
+        )
+        .subscribe()
+
+      unsubscribe = () => {
+        supabase.removeChannel(channel)
+      }
     })
 
     return () => {
       cancelled = true
-      unsub?.()
+      unsubscribe?.()
     }
   }, [slug])
 
   const flush = useCallback(() => {
     const amount = pendingRef.current
     pendingRef.current = 0
-    if (amount <= 0 || !firebaseEnabled) return
+    if (amount <= 0 || !supabaseEnabled) return
 
-    loadFirestore().then((fs) => {
-      if (!fs) return
-      fs.setDoc(fs.doc(fs.db, 'blogClaps', slug), { count: fs.increment(amount) }, { merge: true }).catch(() => {})
+    loadSupabase().then((supabase) => {
+      if (!supabase) return
+      supabase.rpc('increment_claps', { post_slug: slug, amount }).then(({ error }) => {
+        if (error) console.error('Failed to record claps:', error.message)
+      })
     })
   }, [slug])
 
