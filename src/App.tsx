@@ -35,8 +35,8 @@ export default function App() {
           <Experience />
           <Skills />
           <Certifications />
-          <Blog />
           <Education />
+          <Blog />
           <Contact />
         </main>
         <Footer />
