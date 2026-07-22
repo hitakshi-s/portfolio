@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Award, ExternalLink } from 'lucide-react'
+import { Award, ExternalLink, GraduationCap } from 'lucide-react'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { SectionHeader } from '../components/SectionHeader'
-import { resume, type Certification } from '../data/resume'
+import { resume, type Certification, type Education } from '../data/resume'
 import { cn } from '../utils/cn'
 
 const issuerColors: Record<string, string> = {
@@ -111,7 +111,47 @@ function CertCard({ cert, delay }: { cert: Certification; delay: number }) {
   )
 }
 
-export function Certifications() {
+function EducationCard({ edu, delay }: { edu: Education; delay: number }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0, hover: false })
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setTilt({
+      x: ((e.clientY - r.top) / r.height - 0.5) * 10,
+      y: -((e.clientX - r.left) / r.width - 0.5) * 10,
+      hover: true,
+    })
+  }
+
+  return (
+    <ScrollReveal delay={delay}>
+      <div style={{ perspective: '900px' }} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0, hover: false })}>
+        <motion.div
+          className="h-full bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-colors duration-300"
+          animate={{
+            rotateX: tilt.x,
+            rotateY: tilt.y,
+            y: tilt.hover ? -5 : 0,
+            boxShadow: tilt.hover ? '0 14px 36px rgba(162,28,175,0.13)' : '0 1px 4px rgba(0,0,0,0.05)',
+          }}
+          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+          style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+        >
+          <div className="w-10 h-10 rounded-xl bg-accent-light border border-accent/20 flex items-center justify-center mb-4">
+            <GraduationCap size={18} className="text-accent" />
+          </div>
+          <h3 className="text-base font-bold text-text-primary leading-snug">{edu.degree}</h3>
+          <p className="mt-1 text-sm font-medium text-accent">{edu.institution}</p>
+          <p className="mt-1 text-xs text-text-muted">
+            {edu.location} · {edu.year}
+          </p>
+        </motion.div>
+      </div>
+    </ScrollReveal>
+  )
+}
+
+export function CertsAndEducation() {
   const featured = resume.certifications.filter((c) => c.featured)
   const rest = resume.certifications.filter((c) => !c.featured)
 
@@ -119,7 +159,7 @@ export function Certifications() {
     <section id="certifications" className="py-24 lg:py-32 px-6 md:px-12 lg:px-24 xl:px-32 bg-background">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          label="Certifications"
+          label="Certs & Education"
           title="Credentials & Learning"
           subtitle="Continuously upskilling across AI, marketing, and leadership — including a program from IIM Ahmedabad."
         />
@@ -136,6 +176,18 @@ export function Certifications() {
           {rest.map((cert, i) => (
             <CertCard key={cert.name} cert={cert} delay={0.2 + i * 0.06} />
           ))}
+        </div>
+
+        {/* Education */}
+        <div className="mt-16 pt-12 border-t border-border">
+          <ScrollReveal>
+            <span className="text-sm md:text-base font-extrabold uppercase tracking-widest text-accent">Education</span>
+          </ScrollReveal>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {resume.education.map((edu, i) => (
+              <EducationCard key={edu.institution} edu={edu} delay={i * 0.1} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

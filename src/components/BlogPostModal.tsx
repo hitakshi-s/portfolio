@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import type { BlogPost } from '../data/blog'
+import { ClapButton } from './ClapButton'
 
 interface Props {
   post: BlogPost | null
@@ -112,6 +113,11 @@ export function BlogPostModal({ post, onClose }: Props) {
                       return null
                   }
                 })}
+              </div>
+
+              <div className="mt-10 pt-8 border-t border-border flex flex-col items-center gap-3 text-center">
+                <p className="text-sm text-text-muted">Enjoyed this post? Give it a clap.</p>
+                <ClapButton slug={post.slug} />
               </div>
             </div>
           </motion.div>
